@@ -1,0 +1,79 @@
+# =========================================================================
+# 1. Environment & Sensitive Data (CRITICAL)
+# =========================================================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+auth_config.json
+
+# =========================================================================
+# 2. Python (Backend)
+# =========================================================================
+# Virtual environments
+env/
+ENV/
+env.bak/
+
+# Byte-compiled / optimized / DLL files
+
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# =========================================================================
+# 3. React / Node.js (Frontend)
+# =========================================================================
+# Dependencies
+node_modules/
+
+# Production build outputs (HTML/CSS bundles)
+/build/
+/dist/
+/out/
+.next/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================================================================
+# 4. System & Editor Clutter (Windows/Mac/IDEs)
+# =========================================================================
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs and Text Editors
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.sln
+*.swp

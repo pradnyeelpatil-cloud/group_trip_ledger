@@ -1,0 +1,2980 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>GroupTrip Ledger · smart group travel</title>
+
+    <!-- Modern font -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+           ===================================================== */
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+        /* =====================================================
+           BODY
+           ===================================================== */
+
+        body {
+
+            font-family:
+                'Inter',
+                system-ui,
+                -apple-system,
+                sans-serif;
+
+            background: #f2f5fa;
+
+            color: #0b1a2b;
+
+            line-height: 1.5;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 1.5rem;
+
+        }
+
+
+        /* =====================================================
+           MAIN CONTAINER
+           ===================================================== */
+
+        .container {
+
+            max-width: 1320px;
+
+            width: 100%;
+
+            background: rgba(255,255,255,0.75);
+
+            backdrop-filter:
+                blur(14px)
+                saturate(180%);
+
+            -webkit-backdrop-filter:
+                blur(14px)
+                saturate(180%);
+
+            border-radius: 3.5rem;
+
+            padding: 2rem 2.5rem 2rem;
+
+            box-shadow:
+                0 30px 60px -20px
+                rgba(0,20,40,0.25),
+
+                0 8px 24px
+                rgba(0,0,0,0.04);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.6);
+
+            transition: all 0.2s ease;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        /* =====================================================
+           AMBIENT BACKGROUND
+           ===================================================== */
+
+        .ambient {
+
+            position: fixed;
+
+            border-radius: 50%;
+
+            filter: blur(90px);
+
+            opacity: 0.25;
+
+            pointer-events: none;
+
+            z-index: 0;
+
+        }
+
+
+        .ambient-one {
+
+            width: 500px;
+
+            height: 500px;
+
+            background: #b3d0ff;
+
+            top: -10%;
+
+            left: -8%;
+
+        }
+
+
+        .ambient-two {
+
+            width: 400px;
+
+            height: 400px;
+
+            background: #c7e0ff;
+
+            bottom: -6%;
+
+            right: -4%;
+
+        }
+
+
+        .ambient-three {
+
+            width: 300px;
+
+            height: 300px;
+
+            background: #d6e9ff;
+
+            top: 40%;
+
+            right: 20%;
+
+        }
+
+
+        /* =====================================================
+           NAVBAR
+           ===================================================== */
+
+        .navbar {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                0.25rem
+                0
+                1.25rem
+                0;
+
+            border-bottom:
+                1px solid
+                rgba(0,0,0,0.04);
+
+            margin-bottom: 1.75rem;
+
+            flex-wrap: wrap;
+
+            gap: 0.75rem 1rem;
+
+            position: relative;
+
+            z-index: 4;
+
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.6rem;
+
+        }
+
+
+        .brand-icon {
+
+            font-size: 1.8rem;
+
+            line-height: 1;
+
+            color: #1a4cff;
+
+            background:
+                rgba(26,76,255,0.08);
+
+            width: 48px;
+
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 18px;
+
+            font-weight: 500;
+
+        }
+
+
+        .brand-name {
+
+            font-weight: 800;
+
+            font-size: 1.35rem;
+
+            letter-spacing: -0.3px;
+
+            color: #0b1a2b;
+
+        }
+
+
+        .brand-subtitle {
+
+            font-size: 0.7rem;
+
+            font-weight: 600;
+
+            letter-spacing: 0.6px;
+
+            color: #4f6a8b;
+
+            margin-top: -0.1rem;
+
+        }
+
+
+        .nav-create-button {
+
+            background: #0b1a2b;
+
+            color: white;
+
+            border: none;
+
+            padding:
+                0.6rem
+                1.6rem;
+
+            border-radius: 60px;
+
+            font-weight: 600;
+
+            font-size: 0.95rem;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 0.5rem;
+
+            transition: 0.2s;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 6px 14px
+                rgba(11,26,43,0.15);
+
+        }
+
+
+        .nav-create-button:hover {
+
+            background: #1a2f47;
+
+            transform: scale(1.02);
+
+            box-shadow:
+                0 10px 20px
+                rgba(11,26,43,0.2);
+
+        }
+
+
+        .nav-create-button span {
+
+            font-size: 1.2rem;
+
+            font-weight: 300;
+
+        }
+
+
+        /* =====================================================
+           HERO
+           ===================================================== */
+
+        .hero-home {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 2.5rem;
+
+            align-items: center;
+
+            margin:
+                1.5rem
+                0
+                2rem
+                0;
+
+            position: relative;
+
+            z-index: 3;
+
+        }
+
+
+        .hero-content {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 1.2rem;
+
+        }
+
+
+        .hero-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 0.5rem;
+
+            background:
+                rgba(26,76,255,0.07);
+
+            padding:
+                0.35rem
+                1.2rem
+                0.35rem
+                0.9rem;
+
+            border-radius: 40px;
+
+            font-size: 0.7rem;
+
+            font-weight: 600;
+
+            letter-spacing: 0.5px;
+
+            color: #1a4cff;
+
+            width: fit-content;
+
+            border:
+                1px solid
+                rgba(26,76,255,0.10);
+
+        }
+
+
+        .status-dot {
+
+            display: inline-block;
+
+            width: 7px;
+
+            height: 7px;
+
+            background: #1a4cff;
+
+            border-radius: 50%;
+
+            margin-right: 0.1rem;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(26,76,255,0.15);
+
+        }
+
+
+        .hero-content h1 {
+
+            font-size:
+                clamp(2.4rem, 6vw, 3.8rem);
+
+            font-weight: 800;
+
+            letter-spacing: -2px;
+
+            line-height: 1.1;
+
+        }
+
+
+        .hero-content h1 span {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #1a4cff,
+                    #6b8cff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            background-clip: text;
+
+        }
+
+
+        .hero-description {
+
+            font-size: 1.1rem;
+
+            color: #2d4059;
+
+            max-width: 90%;
+
+            font-weight: 400;
+
+            line-height: 1.6;
+
+        }
+
+
+        .hero-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 1.5rem 1rem;
+
+            margin-top: 0.25rem;
+
+        }
+
+
+        .hero-primary {
+
+            background: #0b1a2b;
+
+            color: white;
+
+            border: none;
+
+            padding:
+                0.85rem
+                2rem;
+
+            border-radius: 60px;
+
+            font-weight: 600;
+
+            font-size: 1rem;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 0.65rem;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            box-shadow:
+                0 8px 18px
+                rgba(11,26,43,0.12);
+
+        }
+
+
+        .hero-primary:hover {
+
+            background: #1a2f47;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 26px
+                rgba(11,26,43,0.15);
+
+        }
+
+
+        .hero-primary .arrow {
+
+            transition: 0.2s;
+
+        }
+
+
+        .hero-primary:hover .arrow {
+
+            transform:
+                translateX(4px);
+
+        }
+
+
+        .hero-note {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.4rem;
+
+            font-size: 0.9rem;
+
+            color: #3a5775;
+
+            background:
+                rgba(0,0,0,0.02);
+
+            padding:
+                0.3rem
+                1rem
+                0.3rem
+                0.6rem;
+
+            border-radius: 40px;
+
+            border:
+                1px solid
+                rgba(0,0,0,0.02);
+
+        }
+
+
+        /* =====================================================
+           HERO VISUAL
+           ===================================================== */
+
+        .hero-visual {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 260px;
+
+        }
+
+
+        .orbit {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(26,76,255,0.10);
+
+            animation:
+                spin 30s linear infinite;
+
+        }
+
+
+        .orbit-large {
+
+            width: 260px;
+
+            height: 260px;
+
+            border-color:
+                rgba(26,76,255,0.08);
+
+        }
+
+
+        .orbit-small {
+
+            width: 180px;
+
+            height: 180px;
+
+            border-color:
+                rgba(26,76,255,0.05);
+
+            animation-duration: 20s;
+
+            animation-direction: reverse;
+
+        }
+
+
+        @keyframes spin {
+
+            to {
+
+                transform:
+                    rotate(360deg);
+
+            }
+
+        }
+
+
+        .hero-globe {
+
+            position: relative;
+
+            width: 120px;
+
+            height: 120px;
+
+            background:
+                radial-gradient(
+                    circle at 30% 30%,
+                    #ffffff,
+                    #e6efff
+                );
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow:
+                0 12px 40px
+                rgba(26,76,255,0.08);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.5);
+
+            z-index: 2;
+
+        }
+
+
+        .globe-grid {
+
+            position: absolute;
+
+            inset: 8px;
+
+            background:
+
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(26,76,255,0.03)
+                    0px,
+                    rgba(26,76,255,0.03)
+                    2px,
+                    transparent 2px,
+                    transparent 12px
+                ),
+
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(26,76,255,0.03)
+                    0px,
+                    rgba(26,76,255,0.03)
+                    2px,
+                    transparent 2px,
+                    transparent 12px
+                );
+
+            border-radius: 50%;
+
+        }
+
+
+        .globe-core {
+
+            font-size: 2.8rem;
+
+            z-index: 3;
+
+        }
+
+
+        /* =====================================================
+           FLOATING CARDS
+           ===================================================== */
+
+        .floating-card {
+
+            position: absolute;
+
+            background:
+                rgba(255,255,255,0.7);
+
+            backdrop-filter:
+                blur(12px);
+
+            -webkit-backdrop-filter:
+                blur(12px);
+
+            padding:
+                0.6rem
+                1.2rem;
+
+            border-radius: 60px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.6rem;
+
+            box-shadow:
+                0 12px 28px -8px
+                rgba(0,0,0,0.04),
+
+                0 2px 8px
+                rgba(0,0,0,0.02);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.8);
+
+            font-size: 0.8rem;
+
+            font-weight: 500;
+
+            color: #0b1a2b;
+
+            z-index: 6;
+
+            animation:
+                float 4s ease-in-out infinite;
+
+        }
+
+
+        .floating-card .floating-icon {
+
+            font-size: 1.1rem;
+
+            font-weight: 600;
+
+            color: #1a4cff;
+
+            background:
+                rgba(26,76,255,0.05);
+
+            width: 26px;
+
+            height: 26px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 40px;
+
+        }
+
+
+        .floating-card strong {
+
+            display: block;
+
+            font-weight: 700;
+
+            font-size: 0.85rem;
+
+        }
+
+
+        .floating-card span {
+
+            font-weight: 400;
+
+            color: #4f6a8b;
+
+            font-size: 0.7rem;
+
+        }
+
+
+        .card-expense {
+
+            bottom: 10%;
+
+            left: -6%;
+
+            animation-delay: 0.2s;
+
+        }
+
+
+        .card-settle {
+
+            top: 0%;
+
+            right: -4%;
+
+            animation-delay: 1.2s;
+
+        }
+
+
+        @keyframes float {
+
+            0% {
+
+                transform:
+                    translateY(0px);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-8px);
+
+            }
+
+            100% {
+
+                transform:
+                    translateY(0px);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           QUICK STATS
+           ===================================================== */
+
+        .quick-stats {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 2rem 3rem;
+
+            padding:
+                1.5rem
+                0
+                1.8rem
+                0;
+
+            border-top:
+                1px solid
+                rgba(0,0,0,0.02);
+
+            margin-top: 0.5rem;
+
+            border-bottom:
+                1px solid
+                rgba(0,0,0,0.02);
+
+            margin-bottom: 2rem;
+
+        }
+
+
+        .quick-stat {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.7rem;
+
+        }
+
+
+        .stat-icon {
+
+            font-size: 1.4rem;
+
+            opacity: 0.4;
+
+            color: #1a4cff;
+
+        }
+
+
+        .quick-stat strong {
+
+            font-weight: 700;
+
+            display: block;
+
+            font-size: 1rem;
+
+        }
+
+
+        .quick-stat span {
+
+            font-size: 0.8rem;
+
+            color: #4f6a8b;
+
+            display: block;
+
+        }
+
+
+        /* =====================================================
+           TRIPS SECTION
+           ===================================================== */
+
+        .trips-section {
+
+            margin:
+                1rem
+                0
+                1.5rem
+                0;
+
+        }
+
+
+        .section-heading {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-end;
+
+            flex-wrap: wrap;
+
+            gap: 0.75rem 1rem;
+
+            margin-bottom: 1.75rem;
+
+        }
+
+
+        .section-label {
+
+            font-size: 0.7rem;
+
+            font-weight: 600;
+
+            letter-spacing: 0.8px;
+
+            color: #1a4cff;
+
+            background:
+                rgba(26,76,255,0.04);
+
+            display: inline-block;
+
+            padding:
+                0.1rem
+                0.8rem;
+
+            border-radius: 40px;
+
+        }
+
+
+        .section-heading h2 {
+
+            font-weight: 800;
+
+            font-size: 1.8rem;
+
+            letter-spacing: -0.5px;
+
+            margin-top: 0.2rem;
+
+        }
+
+
+        .section-heading p {
+
+            color: #4f6a8b;
+
+            font-size: 0.95rem;
+
+        }
+
+
+        .trip-count {
+
+            background:
+                rgba(0,0,0,0.02);
+
+            padding:
+                0.3rem
+                1.2rem;
+
+            border-radius: 60px;
+
+            font-weight: 600;
+
+            font-size: 0.9rem;
+
+            color: #0b1a2b;
+
+            border:
+                1px solid
+                rgba(0,0,0,0.02);
+
+        }
+
+
+        #tripsContainer {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 0.8rem;
+
+        }
+
+
+        /* =====================================================
+           REAL TRIP CARD
+           ===================================================== */
+
+        .trip-card {
+
+            width: 100%;
+
+            background:
+                rgba(255,255,255,0.72);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.8);
+
+            border-radius: 2.2rem;
+
+            padding:
+                1rem
+                1.4rem;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 1rem;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,20,40,0.04);
+
+            transition:
+                transform 0.18s ease,
+                box-shadow 0.18s ease,
+                border-color 0.18s ease;
+
+        }
+
+
+        .trip-card:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 14px 30px
+                rgba(0,20,40,0.08);
+
+            border-color:
+                rgba(26,76,255,0.15);
+
+        }
+
+
+        .trip-card-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 1rem;
+
+            min-width: 0;
+
+        }
+
+
+        .trip-icon {
+
+            width: 52px;
+
+            height: 52px;
+
+            min-width: 52px;
+
+            border-radius: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(26,76,255,0.07);
+
+            color: #1a4cff;
+
+            font-size: 1.4rem;
+
+        }
+
+
+        .trip-info {
+
+            min-width: 0;
+
+        }
+
+
+        .trip-info h3 {
+
+            font-size: 1rem;
+
+            font-weight: 750;
+
+            margin-bottom: 3px;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+        }
+
+
+        .trip-info p {
+
+            color: #4f6a8b;
+
+            font-size: 0.78rem;
+
+        }
+
+
+        .trip-card-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.7rem;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .trip-members {
+
+            background:
+                rgba(26,76,255,0.05);
+
+            color: #1a4cff;
+
+            padding:
+                0.3rem
+                0.8rem;
+
+            border-radius: 40px;
+
+            font-size: 0.7rem;
+
+            font-weight: 650;
+
+        }
+
+
+        .trip-status {
+
+            background:
+                rgba(16,185,129,0.07);
+
+            color: #16855d;
+
+            padding:
+                0.3rem
+                0.8rem;
+
+            border-radius: 40px;
+
+            font-size: 0.7rem;
+
+            font-weight: 650;
+
+        }
+
+
+        .trip-arrow {
+
+            color: #8ca0b8;
+
+            font-size: 1.2rem;
+
+            transition: 0.2s;
+
+        }
+
+
+        .trip-card:hover .trip-arrow {
+
+            transform:
+                translateX(4px);
+
+            color: #1a4cff;
+
+        }
+
+
+        /* =====================================================
+           EMPTY STATE
+           ===================================================== */
+
+        .empty-state {
+
+            text-align: center;
+
+            padding: 4rem 2rem;
+
+            background:
+                rgba(255,255,255,0.4);
+
+            border-radius: 3rem;
+
+            border:
+                1px dashed
+                rgba(26,76,255,0.15);
+
+            backdrop-filter:
+                blur(4px);
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 1.5rem;
+
+        }
+
+
+        .empty-illustration {
+
+            position: relative;
+
+            width: 100px;
+
+            height: 100px;
+
+            margin: 0 auto;
+
+        }
+
+
+        .empty-ring {
+
+            position: absolute;
+
+            inset: 0;
+
+            border-radius: 50%;
+
+            border:
+                2px dashed
+                rgba(26,76,255,0.15);
+
+            animation:
+                spin 24s linear infinite;
+
+        }
+
+
+        .empty-plane {
+
+            font-size: 3.2rem;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            height: 100%;
+
+        }
+
+
+        .empty-label {
+
+            font-weight: 600;
+
+            font-size: 0.7rem;
+
+            letter-spacing: 1px;
+
+            color: #1a4cff;
+
+        }
+
+
+        .empty-content h3 {
+
+            font-size: 1.6rem;
+
+            font-weight: 700;
+
+            margin:
+                0.25rem
+                0
+                0.5rem;
+
+        }
+
+
+        .empty-content p {
+
+            color: #4f6a8b;
+
+            max-width: 400px;
+
+            margin:
+                0
+                auto
+                1.2rem;
+
+        }
+
+
+        .primary-button {
+
+            background: #0b1a2b;
+
+            color: white;
+
+            border: none;
+
+            padding:
+                0.7rem
+                2rem;
+
+            border-radius: 60px;
+
+            font-weight: 600;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 0.5rem;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            font-size: 0.95rem;
+
+        }
+
+
+        .primary-button:hover {
+
+            background: #1a2f47;
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(11,26,43,0.10);
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        .footer {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding-top: 1.75rem;
+
+            margin-top: 1.5rem;
+
+            border-top:
+                1px solid
+                rgba(0,0,0,0.02);
+
+            flex-wrap: wrap;
+
+            gap: 0.75rem;
+
+            color: #4f6a8b;
+
+            font-size: 0.85rem;
+
+        }
+
+
+        .footer strong {
+
+            color: #0b1a2b;
+
+            margin-right: 0.5rem;
+
+        }
+
+
+        .footer-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.5rem;
+
+        }
+
+
+        .footer-status .status-dot {
+
+            background: #10b981;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(16,185,129,0.15);
+
+        }
+
+
+        /* =====================================================
+           MODAL
+           ===================================================== */
+
+        .modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0,0,0,0.2);
+
+            backdrop-filter:
+                blur(12px);
+
+            -webkit-backdrop-filter:
+                blur(12px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 999;
+
+            padding: 1.5rem;
+
+            opacity: 1;
+
+            transition:
+                opacity 0.25s ease;
+
+        }
+
+
+        .modal.hidden {
+
+            opacity: 0;
+
+            pointer-events: none;
+
+        }
+
+
+        .modal-content {
+
+            background:
+                rgba(255,255,255,0.85);
+
+            backdrop-filter:
+                blur(20px);
+
+            -webkit-backdrop-filter:
+                blur(20px);
+
+            max-width: 540px;
+
+            width: 100%;
+
+            padding:
+                2rem
+                2rem
+                2.2rem;
+
+            border-radius: 2.8rem;
+
+            box-shadow:
+                0 30px 60px
+                rgba(0,0,0,0.15);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.6);
+
+            transform: scale(1);
+
+            transition:
+                0.2s ease;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+        }
+
+
+        .modal.hidden .modal-content {
+
+            transform:
+                scale(0.95);
+
+        }
+
+
+        .modal-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            gap: 1rem;
+
+            margin-bottom: 1.8rem;
+
+        }
+
+
+        .modal-label {
+
+            font-size: 0.6rem;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            color: #1a4cff;
+
+        }
+
+
+        .modal-header h2 {
+
+            font-weight: 800;
+
+            font-size: 1.6rem;
+
+            letter-spacing: -0.3px;
+
+        }
+
+
+        .modal-header p {
+
+            color: #4f6a8b;
+
+            font-size: 0.9rem;
+
+        }
+
+
+        .close-button {
+
+            background:
+                rgba(0,0,0,0.02);
+
+            border: none;
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 40px;
+
+            font-size: 1.6rem;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            color: #1f2f44;
+
+            transition: 0.15s;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .close-button:hover {
+
+            background:
+                rgba(0,0,0,0.04);
+
+        }
+
+
+        /* =====================================================
+           FORM
+           ===================================================== */
+
+        .form-group {
+
+            margin-bottom: 1.25rem;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            font-weight: 600;
+
+            font-size: 0.85rem;
+
+            margin-bottom: 0.2rem;
+
+        }
+
+
+        .form-group input {
+
+            width: 100%;
+
+            padding:
+                0.7rem
+                1rem;
+
+            border-radius: 60px;
+
+            border:
+                1px solid
+                rgba(0,0,0,0.04);
+
+            background:
+                rgba(255,255,255,0.5);
+
+            font-size: 0.95rem;
+
+            transition: 0.15s;
+
+            outline: none;
+
+            font-family: inherit;
+
+        }
+
+
+        .form-group input:focus {
+
+            border-color: #1a4cff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(26,76,255,0.08);
+
+            background: white;
+
+        }
+
+
+        .date-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 1rem;
+
+        }
+
+
+        /* =====================================================
+           MEMBERS
+           ===================================================== */
+
+        .members-form-section {
+
+            margin:
+                1.5rem
+                0
+                1.5rem;
+
+            background:
+                rgba(255,255,255,0.2);
+
+            padding:
+                1rem
+                1.2rem;
+
+            border-radius: 2rem;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.5);
+
+        }
+
+
+        .members-title-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 0.8rem;
+
+        }
+
+
+        .members-title-row label {
+
+            font-weight: 700;
+
+            font-size: 0.95rem;
+
+        }
+
+
+        .members-title-row p {
+
+            font-size: 0.75rem;
+
+            color: #4f6a8b;
+
+            margin-top: -0.1rem;
+
+        }
+
+
+        .member-counter {
+
+            background:
+                rgba(0,0,0,0.02);
+
+            padding:
+                0.2rem
+                1rem;
+
+            border-radius: 40px;
+
+            font-weight: 600;
+
+            font-size: 0.75rem;
+
+        }
+
+
+        .members-input-container {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 0.5rem;
+
+        }
+
+
+        .member-input-row {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.75rem;
+
+        }
+
+
+        .input-number {
+
+            font-weight: 600;
+
+            font-size: 0.7rem;
+
+            color: #7a93b0;
+
+            width: 28px;
+
+        }
+
+
+        .member-input-row input {
+
+            flex: 1;
+
+            padding:
+                0.6rem
+                1rem;
+
+            border-radius: 60px;
+
+            border:
+                1px solid
+                rgba(0,0,0,0.02);
+
+            background:
+                rgba(255,255,255,0.3);
+
+            font-size: 0.9rem;
+
+            font-family: inherit;
+
+            outline: none;
+
+            transition: 0.15s;
+
+        }
+
+
+        .member-input-row input:focus {
+
+            border-color: #1a4cff;
+
+            background: white;
+
+        }
+
+
+        .secondary-button {
+
+            background: transparent;
+
+            border:
+                1px dashed
+                rgba(26,76,255,0.2);
+
+            padding:
+                0.4rem
+                1.2rem;
+
+            border-radius: 60px;
+
+            font-weight: 500;
+
+            color: #1a4cff;
+
+            cursor: pointer;
+
+            margin-top: 0.4rem;
+
+            transition: 0.15s;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 0.4rem;
+
+            font-size: 0.85rem;
+
+        }
+
+
+        .secondary-button:hover {
+
+            background:
+                rgba(26,76,255,0.02);
+
+            border-color: #1a4cff;
+
+        }
+
+
+        .full-width {
+
+            width: 100%;
+
+            justify-content: center;
+
+            padding: 0.9rem;
+
+            margin-top: 0.4rem;
+
+        }
+
+
+        /* =====================================================
+           LOADING
+           ===================================================== */
+
+        .loading-state {
+
+            text-align: center;
+
+            padding: 2.5rem;
+
+            color: #4f6a8b;
+
+        }
+
+
+        .loading-dot {
+
+            display: inline-block;
+
+            width: 8px;
+
+            height: 8px;
+
+            background: #1a4cff;
+
+            border-radius: 50%;
+
+            margin: 0 3px;
+
+            animation:
+                loading 1s infinite;
+
+        }
+
+
+        .loading-dot:nth-child(2) {
+
+            animation-delay: 0.15s;
+
+        }
+
+
+        .loading-dot:nth-child(3) {
+
+            animation-delay: 0.3s;
+
+        }
+
+
+        @keyframes loading {
+
+            0%,
+            100% {
+
+                opacity: 0.25;
+
+                transform:
+                    translateY(0);
+
+            }
+
+            50% {
+
+                opacity: 1;
+
+                transform:
+                    translateY(-4px);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        @media (max-width: 880px) {
+
+            .hero-home {
+
+                grid-template-columns: 1fr;
+
+                gap: 2rem;
+
+            }
+
+
+            .hero-visual {
+
+                min-height: 200px;
+
+            }
+
+
+            .floating-card {
+
+                font-size: 0.7rem;
+
+                padding:
+                    0.4rem
+                    0.9rem;
+
+            }
+
+
+            .container {
+
+                padding: 1.5rem;
+
+                border-radius: 2.2rem;
+
+            }
+
+
+            .card-expense {
+
+                left: 0%;
+
+                bottom: 0%;
+
+            }
+
+
+            .card-settle {
+
+                top: -10%;
+
+                right: 0%;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 0.7rem;
+
+            }
+
+
+            .container {
+
+                padding: 1.2rem;
+
+                border-radius: 1.8rem;
+
+            }
+
+
+            .hero-content h1 {
+
+                font-size: 2.5rem;
+
+            }
+
+
+            .hero-description {
+
+                max-width: 100%;
+
+                font-size: 0.95rem;
+
+            }
+
+
+            .hero-actions {
+
+                align-items: stretch;
+
+                flex-direction: column;
+
+            }
+
+
+            .hero-primary {
+
+                justify-content: center;
+
+            }
+
+
+            .hero-note {
+
+                justify-content: center;
+
+            }
+
+
+            .date-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .modal-content {
+
+                padding: 1.5rem;
+
+                border-radius: 2rem;
+
+            }
+
+
+            .trip-card {
+
+                padding: 0.9rem;
+
+            }
+
+
+            .trip-card-left {
+
+                gap: 0.7rem;
+
+            }
+
+
+            .trip-icon {
+
+                width: 44px;
+
+                height: 44px;
+
+                min-width: 44px;
+
+                border-radius: 15px;
+
+            }
+
+
+            .trip-card-right {
+
+                gap: 0.3rem;
+
+            }
+
+
+            .trip-members {
+
+                display: none;
+
+            }
+
+
+            .trip-info h3 {
+
+                max-width: 170px;
+
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         AMBIENT BACKGROUND
+         ===================================================== -->
+
+    <div class="ambient ambient-one"></div>
+
+    <div class="ambient ambient-two"></div>
+
+    <div class="ambient ambient-three"></div>
+
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main class="container">
+
+
+        <!-- =================================================
+             NAVBAR
+             ================================================= -->
+
+        <nav class="navbar">
+
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    ◈
+                </div>
+
+                <div>
+
+                    <div class="brand-name">
+                        GroupTrip
+                    </div>
+
+                    <div class="brand-subtitle">
+                        LEDGER
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="openCreateTrip"
+                class="nav-create-button"
+                type="button"
+            >
+
+                <span>
+                    +
+                </span>
+
+                New Trip
+
+            </button>
+
+
+        </nav>
+
+
+
+        <!-- =================================================
+             HERO
+             ================================================= -->
+
+        <section class="hero-home">
+
+
+            <div class="hero-content">
+
+
+                <div class="hero-badge">
+
+                    <span class="status-dot"></span>
+
+                    SMART TRAVEL EXPENSE MANAGER
+
+                </div>
+
+
+                <h1>
+
+                    Travel together.<br>
+
+                    <span>
+                        Settle smarter.
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Keep your entire group's expenses,
+                    members and settlements in one place.
+                    No spreadsheets. No awkward calculations.
+
+                </p>
+
+
+                <div class="hero-actions">
+
+
+                    <button
+                        id="heroCreateTrip"
+                        class="hero-primary"
+                        type="button"
+                    >
+
+                        <span class="button-icon">
+                            +
+                        </span>
+
+                        Create New Trip
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <div class="hero-note">
+
+                        <span>
+                            ⚡
+                        </span>
+
+                        Simple. Fast. Built for groups.
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- HERO VISUAL -->
+
+            <div class="hero-visual">
+
+
+                <div class="orbit orbit-large"></div>
+
+                <div class="orbit orbit-small"></div>
+
+
+                <div class="hero-globe">
+
+                    <div class="globe-grid"></div>
+
+                    <div class="globe-core">
+                        ✈
+                    </div>
+
+                </div>
+
+
+                <div class="floating-card card-expense">
+
+
+                    <div class="floating-icon">
+                        ₹
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Group expenses
+                        </span>
+
+                        <strong>
+                            Automated
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="floating-card card-settle">
+
+
+                    <div class="floating-icon">
+                        ✓
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Settlement
+                        </span>
+
+                        <strong>
+                            Simplified
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             QUICK STATS
+             ================================================= -->
+
+        <section class="quick-stats">
+
+
+            <div class="quick-stat">
+
+
+                <div class="stat-icon">
+                    ◉
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        One place
+                    </strong>
+
+                    <span>
+                        For every trip
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="quick-stat">
+
+
+                <div class="stat-icon">
+                    ₹
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Automatic
+                    </strong>
+
+                    <span>
+                        Expense tracking
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="quick-stat">
+
+
+                <div class="stat-icon">
+                    ⇄
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Easy
+                    </strong>
+
+                    <span>
+                        Group settlement
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             TRIPS
+             ================================================= -->
+
+        <section class="trips-section">
+
+
+            <div class="section-heading">
+
+
+                <div>
+
+                    <div class="section-label">
+                        YOUR JOURNEYS
+                    </div>
+
+
+                    <h2>
+                        Your Trips
+                    </h2>
+
+
+                    <p>
+                        Everything you've planned,
+                        all in one place.
+                    </p>
+
+
+                </div>
+
+
+                <div
+                    id="tripCount"
+                    class="trip-count"
+                >
+                    0 trips
+                </div>
+
+
+            </div>
+
+
+
+            <!-- REAL TRIPS WILL BE INSERTED HERE -->
+
+            <div id="tripsContainer">
+
+
+                <div class="empty-state">
+
+
+                    <div class="empty-illustration">
+
+                        <div class="empty-ring"></div>
+
+                        <div class="empty-plane">
+                            ✈
+                        </div>
+
+                    </div>
+
+
+                    <div class="empty-content">
+
+
+                        <div class="empty-label">
+                            READY FOR TAKEOFF?
+                        </div>
+
+
+                        <h3>
+                            Your journey starts here
+                        </h3>
+
+
+                        <p>
+                            Create your first trip,
+                            invite your crew and let
+                            GroupTrip Ledger handle
+                            the expenses.
+                        </p>
+
+
+                        <button
+                            id="emptyCreateTrip"
+                            class="primary-button"
+                            type="button"
+                        >
+
+                            <span>
+                                +
+                            </span>
+
+                            Create Your First Trip
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             FOOTER
+             ================================================= -->
+
+        <footer class="footer">
+
+
+            <div>
+
+                <strong>
+                    GroupTrip Ledger
+                </strong>
+
+                <span>
+                    Smart expenses for better journeys.
+                </span>
+
+            </div>
+
+
+            <div class="footer-status">
+
+                <span class="status-dot"></span>
+
+                System ready
+
+            </div>
+
+
+        </footer>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         CREATE TRIP MODAL
+         ===================================================== -->
+
+    <div
+        id="createTripModal"
+        class="modal hidden"
+    >
+
+
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+
+
+                <div>
+
+
+                    <div class="modal-label">
+                        NEW JOURNEY
+                    </div>
+
+
+                    <h2>
+                        Create New Trip
+                    </h2>
+
+
+                    <p>
+                        Set up your group and start
+                        tracking expenses.
+                    </p>
+
+
+                </div>
+
+
+                <button
+                    id="closeModal"
+                    class="close-button"
+                    type="button"
+                >
+                    ×
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FORM
+                 ================================================= -->
+
+            <form id="tripForm">
+
+
+                <!-- Trip Name -->
+
+                <div class="form-group">
+
+
+                    <label for="tripName">
+                        Trip Name
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="tripName"
+                        placeholder="e.g. Goa Adventure"
+                        autocomplete="off"
+                        maxlength="100"
+                        required
+                    >
+
+
+                </div>
+
+
+
+                <!-- Dates -->
+
+                <div class="date-grid">
+
+
+                    <div class="form-group">
+
+
+                        <label for="startDate">
+                            Start Date
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="startDate"
+                        >
+
+
+                    </div>
+
+
+                    <div class="form-group">
+
+
+                        <label for="endDate">
+                            End Date
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="endDate"
+                        >
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Members -->
+
+                <div class="members-form-section">
+
+
+                    <div class="members-title-row">
+
+
+                        <div>
+
+                            <label>
+                                Trip Members
+                            </label>
+
+
+                            <p>
+                                Add everyone travelling
+                                with you.
+                            </p>
+
+                        </div>
+
+
+                        <span
+                            id="memberCounter"
+                            class="member-counter"
+                        >
+                            2 members
+                        </span>
+
+
+                    </div>
+
+
+
+                    <div
+                        id="membersContainer"
+                        class="members-input-container"
+                    >
+
+
+                        <div class="member-input-row">
+
+
+                            <div class="input-number">
+                                01
+                            </div>
+
+
+                            <input
+                                type="text"
+                                class="member-input"
+                                placeholder="Member name"
+                                maxlength="60"
+                                required
+                            >
+
+
+                        </div>
+
+
+
+                        <div class="member-input-row">
+
+
+                            <div class="input-number">
+                                02
+                            </div>
+
+
+                            <input
+                                type="text"
+                                class="member-input"
+                                placeholder="Member name"
+                                maxlength="60"
+                            >
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <button
+                        type="button"
+                        id="addMember"
+                        class="secondary-button"
+                    >
+
+                        <span>
+                            +
+                        </span>
+
+                        Add another member
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- Submit -->
+
+                <button
+                    type="submit"
+                    id="createTripButton"
+                    class="primary-button full-width"
+                >
+
+                    <span id="createTripButtonText">
+                        Create Trip
+                    </span>
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ONLY ONE JAVASCRIPT FILE
+         ===================================================== -->
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+
+</body>
+
+</html>
